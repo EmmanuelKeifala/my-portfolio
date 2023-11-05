@@ -1,10 +1,12 @@
 import Layout from '@/components/Layout';
 import Head from 'next/head';
 import Image from 'next/image';
-import profilePicture from '../../public/images/profile.png';
+import profilePicture from '../../public/images/profile.JPG';
+import lightBulb from '../../public/images/svgs/miscellaneous_icons_1.svg';
 import AnimatedText from '@/components/AnimatedText';
 import Link from 'next/link';
 import {LinkArrow} from '@/components/Icons';
+import HireMe from '@/components/HireMe';
 export default function Home() {
   return (
     <>
@@ -16,13 +18,13 @@ export default function Home() {
         <Layout className="pt-0">
           <div className="flex items-center justify-between w-full">
             <div className="w-1/2">
-              {/* <Image
+              <Image
                 src={profilePicture}
                 alt="Emmanuel Keifala"
-                className="w-full h-auto "
-              /> */}
+                className="w-full h-auto"
+              />
             </div>
-            <div className="w-1/2 flex flex-col items-center self-center">
+            <div className="w-1/2 flex flex-col items-center self-center ml-40">
               <AnimatedText
                 text={
                   'Transforming Vision into Reality Through Code and Design.'
@@ -55,6 +57,10 @@ export default function Home() {
             </div>
           </div>
         </Layout>
+        <HireMe />
+        <div className="absolute right-8 bottom-8 inline-block w-24">
+          <Image src={lightBulb} alt="EmTech" className="w-full h-auto" />
+        </div>
       </main>
     </>
   );
