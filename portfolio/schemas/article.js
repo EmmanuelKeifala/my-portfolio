@@ -1,13 +1,12 @@
 export default {
-  name: 'article',
-  title: 'Article',
+  name: 'articles',
+  title: 'Articles',
   type: 'document',
   fields: [
     {
       name: 'title',
       title: 'Title',
       type: 'string',
-      validation: Rule => Rule.required(),
     },
     {
       name: 'slug',
@@ -17,7 +16,6 @@ export default {
         source: 'title',
         maxLength: 200,
       },
-      validation: Rule => Rule.required(),
     },
     {
       name: 'content',
@@ -28,14 +26,13 @@ export default {
     {
       name: 'author',
       title: 'Author',
-      type: 'document',
-      reference: {to: [{type: 'author'}]},
+      type: 'reference',
+      to: [{type: 'author'}],
     },
     {
       name: 'publishedAt',
       title: 'Published Date',
       type: 'datetime',
-      validation: Rule => Rule.required(),
     },
     {
       name: 'tags',

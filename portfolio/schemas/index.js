@@ -7,7 +7,7 @@ import workExperience from './workExperience';
 import contact from './contact';
 import skill from './skill';
 import article from './article';
-
+import author from './author';
 export const schemaTypes = [
   works,
   testimonials,
@@ -18,4 +18,5 @@ export const schemaTypes = [
   workExperience,
   contact,
   article,
+  author,
 ];
