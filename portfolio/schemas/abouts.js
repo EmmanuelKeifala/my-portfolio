@@ -9,9 +9,34 @@ export default {
       type: 'string',
     },
     {
-      name: 'description',
-      title: 'Description',
+      name: 'description1',
+      title: 'Description 1',
       type: 'string',
+    },
+    {
+      name: 'description2',
+      title: 'Description 2',
+      type: 'string',
+    },
+    {
+      name: 'description3',
+      title: 'Description 3',
+      type: 'string',
+    },
+    {
+      name: 'clientSatisfied',
+      title: 'Satisfied Clients',
+      type: 'number',
+    },
+    {
+      name: 'projectsCompleted',
+      title: 'Projects Completed',
+      type: 'number',
+    },
+    {
+      name: 'workingExperience',
+      title: 'Working Experience',
+      type: 'number',
     },
     {
       name: 'imgUrl',

@@ -14,6 +14,16 @@ export default {
       type: 'string',
     },
     {
+      name: 'positionX',
+      title: 'Position x',
+      type: 'string',
+    },
+    {
+      name: 'positionY',
+      title: 'Position y',
+      type: 'string',
+    },
+    {
       name: 'icon',
       title: 'Icon',
       type: 'image',
