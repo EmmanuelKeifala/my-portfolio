@@ -3,12 +3,13 @@ import Layout from '@/components/Layout';
 import Head from 'next/head';
 import Image from 'next/image';
 import React from 'react';
-import aboutImage from '../../public/images/about.png';
 import {useRef} from 'react';
 import {useInView, useMotionValue, useSpring} from 'framer-motion';
 import {useEffect} from 'react';
 import Skills from '@/components/Skills';
 import Experience from '@/components/Experience';
+import {useState} from 'react';
+import {client} from '@/client';
 
 const AnimatedNumbers = ({value}) => {
   const ref = useRef(null);
@@ -24,7 +25,6 @@ const AnimatedNumbers = ({value}) => {
 
   useEffect(() => {
     springValue.on('change', latest => {
-      console.log(latest);
       if (ref.current && latest.toFixed(0) <= value) {
         ref.current.textContent = latest.toFixed(0);
       }
@@ -32,7 +32,20 @@ const AnimatedNumbers = ({value}) => {
   }, [springValue, value]);
   return <span ref={ref}></span>;
 };
-const about = () => {
+const About = () => {
+  const [abouts, setAbouts] = useState([]);
+
+  useEffect(() => {
+    const query = `*[_type == "abouts"]{
+  description3, projectsCompleted,clientSatisfied,workingExperience,description2, title,description1,
+    
+"imageUrl": imgUrl.asset->url
+}
+`;
+    client.fetch(query).then(data => {
+      setAbouts(data);
+    });
+  }, []);
   return (
     <>
       <Head>
@@ -41,39 +54,22 @@ const about = () => {
       </Head>
       <main className="flex w-full flex-col items-center justify-center">
         <Layout className="pt-16">
-          <AnimatedText
-            text={'Dedication Ignites Purpose!'}
-            className="mb-16"
-          />
+          <AnimatedText text={abouts[0]?.title} className="mb-16" />
           <div className="grid w-full grid-cols-8 gap-16">
             <div className="col-span-3 flex flex-col items-start justify-start">
               <h2 className="mb-4 text-lg font-bold uppercase text-dark/75">
                 Biography
               </h2>
-              <p className="font-medium">
-                Hey, I'm Emmanuel Keifala, a web developer and web manager
-                driven by the fervor to craft stunning, functional, and
-                user-centric digital encounters. With a year of hands-on
-                experience in the industry, I perpetually seek novel and
-                inventive approaches to breathe life into my clients' visions.
-              </p>
-              <p className="my-4 font-medium">
-                I firmly uphold the belief that design transcends mere
-                aesthetics; it's the art of problem-solving and the cultivation
-                of intuitive, enjoyable user journeys.
-              </p>
-              <p className="font-medium">
-                Whether I'm engaged in the architecture of a website, a mobile
-                app, or any other digital creation, I bring unwavering
-                commitment to design excellence and user-centric philosophy to
-                every endeavor. I eagerly anticipate the prospect of channeling
-                my skills and ardor into your forthcoming project.
-              </p>
+              <p className="font-medium">{abouts[0]?.description1}</p>
+              <p className="my-4 font-medium">{abouts[0]?.description2}</p>
+              <p className="font-medium">{abouts[0]?.description3}</p>
             </div>
             <div className="col-span-3 relative h-max rounded-2xl border-2 border-solid border-dark bg-light p-8">
               <div className="absolute top-0 -right-3 -z-10 w-[102%] h-[103%] rounded-[2rem] bg-dark" />
               <Image
-                src={aboutImage}
+                width={500}
+                height={500}
+                src={abouts[0]?.imageUrl}
                 alt="Emmanuel"
                 className="w-full h-auto rounded-2xl"
               />
@@ -81,7 +77,7 @@ const about = () => {
             <div className="col-span-2 flex flex-col items-end justify-between">
               <div className="flex flex-col items-end justify-center">
                 <span className="inline-block text-7xl font-bold">
-                  <AnimatedNumbers value={10} />+
+                  <AnimatedNumbers value={abouts[0]?.clientSatisfied} />+
                 </span>
 
                 <h2 className="text-xl font-medium capitalize text-dark/75">
@@ -90,7 +86,7 @@ const about = () => {
               </div>
               <div className="flex flex-col items-end justify-center">
                 <span className="inline-block text-7xl font-bold">
-                  <AnimatedNumbers value={10} />+
+                  <AnimatedNumbers value={abouts[0]?.projectsCompleted} />+
                 </span>
                 <h2 className="text-xl font-medium capitalize text-dark/75">
                   projects completed
@@ -98,7 +94,14 @@ const about = () => {
               </div>
               <div className="flex flex-col items-end justify-center">
                 <span className="inline-block text-7xl font-bold">
-                  <AnimatedNumbers value={1} />+
+                  <AnimatedNumbers
+                    value={
+                      abouts[0]?.workingExperience == 0
+                        ? 0
+                        : `${abouts[0]?.workingExperience}`
+                    }
+                  />
+                  {abouts[0]?.workingExperience > 0 && '+'}
                 </span>
                 <h2 className="text-xl font-medium capitalize text-dark/75">
                   working experience
@@ -114,4 +117,4 @@ const about = () => {
   );
 };
 
-export default about;
+export default About;

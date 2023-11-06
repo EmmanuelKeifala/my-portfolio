@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {motion, useScroll} from 'framer-motion';
 import {useRef} from 'react';
 import LiIcon from './LiIcon';
+import {client} from '@/client';
 const Details = ({position, company, companyLink, time, work}) => {
   const ref = useRef(null);
   return (
@@ -27,6 +28,14 @@ const Details = ({position, company, companyLink, time, work}) => {
   );
 };
 const Experience = () => {
+  const [experiences, setExperiences] = useState([]);
+
+  useEffect(() => {
+    const query = '*[_type == "experiences"]';
+    client.fetch(query).then(data => {
+      setExperiences(data);
+    });
+  }, []);
   const ref = useRef(null);
   const {scrollYProgress} = useScroll({
     target: ref,
@@ -43,7 +52,17 @@ const Experience = () => {
           className="absolute left-9 top-0 w-[4px] h-full bg-dark origin-top"
         />
         <ul className="w-full flex flex-col items-start justify-between ml-4">
-          <Details
+          {experiences?.map(experience => (
+            <Details
+              key={experience._id}
+              position={experience.position}
+              company={experience.works[0].company}
+              time={experience.year}
+              work={experience.works[0].desc}
+              companyLink={'wwww.google.com'}
+            />
+          ))}
+          {/* <Details
             position="Software Engineer"
             company="Google"
             time="2022-Present"
@@ -51,7 +70,7 @@ const Experience = () => {
 search engine, including improving the accuracy and relevance of search results and 
 developing new tools for data analysis and visualization. "
             companyLink={'wwww.google.com'}
-          />
+          /> */}
         </ul>
       </div>
     </div>

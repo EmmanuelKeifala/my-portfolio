@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {motion} from 'framer-motion';
+import {client} from '@/client';
 
 const Skill = ({name, x, y}) => {
   return (
@@ -17,6 +18,14 @@ const Skill = ({name, x, y}) => {
   );
 };
 const Skills = () => {
+  const [skills, setSkills] = useState([]);
+
+  useEffect(() => {
+    const query = '*[_type == "skills"]';
+    client.fetch(query).then(data => {
+      setSkills(data);
+    });
+  }, []);
   return (
     <>
       <h2 className="font-bold text-8xl mt-64 w-full text-center">Skills</h2>
@@ -28,17 +37,14 @@ const Skills = () => {
           }}>
           Web
         </motion.div>
-        <Skill name="HTML" x="-22vw" y="-2vw" />
-
-        <Skill name="CSS" x="-5vw" y="-10vw" />
-        <Skill name="Javascript" x="20vw" y="6vw" />
-        <Skill name="ReactJs" x="0vw" y="12vw" />
-        <Skill name="NextJs" x="15vw" y="-12vw" />
-        <Skill name="MongoDb" x="32vw" y="-5vw" />
-        <Skill name="Web Management" x="32vw" y="-5vw" />
-        <Skill name="React Native" x="-25vw" y="18vw" />
-        <Skill name="Firebase" x="-25vw" y="18vw" />
-        <Skill name="Tailwind CSS" x="18vw" y="18vw" />
+        {skills.map(skill => (
+          <Skill
+            key={skill._id}
+            name={skill.name}
+            x={skill.positionX}
+            y={skill.positionY}
+          />
+        ))}
       </div>
     </>
   );
