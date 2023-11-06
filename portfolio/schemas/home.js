@@ -1,6 +1,6 @@
 export default {
-  name: 'brands',
-  title: 'Brands',
+  name: 'home',
+  title: 'Home',
   type: 'document',
   fields: [
     {
@@ -12,8 +12,13 @@ export default {
       },
     },
     {
-      name: 'name',
-      title: 'Name',
+      name: 'title',
+      title: 'title',
+      type: 'string',
+    },
+    {
+      name: 'subTitle',
+      title: 'Subtitle',
       type: 'string',
     },
   ],
