@@ -14,5 +14,15 @@ export default {
       type: 'array',
       of: [{type: 'workExperience'}],
     },
+    {
+      name: 'companyLink',
+      title: 'Company Link',
+      type: 'string',
+    },
+    {
+      name: 'position',
+      title: 'Position',
+      type: 'string',
+    },
   ],
 };
