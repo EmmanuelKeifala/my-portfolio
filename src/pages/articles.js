@@ -47,6 +47,8 @@ const MovingImg = ({title, img, link}) => {
         initial={{opacity: 0}}
         whileInView={{opacity: 1, transition: {duration: 0.2}}}
         className="w-96 h-auto hidden absolute rounded-lg z-10"
+        priority
+        sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw"
       />
     </Link>
   );

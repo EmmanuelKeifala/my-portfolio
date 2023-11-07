@@ -37,6 +37,8 @@ export default function Home() {
                 src={home[0]?.imageUrl}
                 alt="Emmanuel Keifala"
                 className="w-full h-auto"
+                priority={true}
+                sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw"
               />
             </div>
             <div className="w-1/2 flex flex-col items-center self-center ml-40">
