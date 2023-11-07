@@ -44,6 +44,8 @@ const MovingImg = ({title, img, link}) => {
         ref={ref}
         src={img}
         alt={title}
+        initial={{opacity: 0}}
+        whileInView={{opacity: 1, transition: {duration: 0.2}}}
         className="w-96 h-auto hidden absolute rounded-lg z-10"
       />
     </Link>
@@ -65,7 +67,10 @@ const ArticlesCard = ({img, title, date, link, summary}) => {
     document.body.classList.remove('modal-open');
   };
   return (
-    <li
+    <motion.li
+      initial={{y: 200}}
+      whileInView={{y: 0, transition: {duration: 0.5, ease: 'easeInOut'}}}
+      viewport={{once: true}}
       className="relative w-full p-4 py-6 my-4 rounded-xl flex items-center justify-between bg-light text-dark first:mt-0 border border-solid border-dark border-r-4 border-b-4"
       onClick={() => openDialog(summary)}>
       <MovingImg title={title} img={img} link={link} />
@@ -77,7 +82,7 @@ const ArticlesCard = ({img, title, date, link, summary}) => {
           </p>
         </Dialog>
       )}
-    </li>
+    </motion.li>
   );
 };
 const FeautredArticle = ({img, title, time, summary, link}) => {
