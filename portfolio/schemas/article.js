@@ -24,6 +24,11 @@ export default {
       of: [{type: 'block'}],
     },
     {
+      name: 'time',
+      title: 'Reading Time',
+      type: 'string',
+    },
+    {
       name: 'author',
       title: 'Author',
       type: 'reference',
@@ -39,6 +44,23 @@ export default {
       title: 'Tags',
       type: 'array',
       of: [{type: 'string'}],
+    },
+    {
+      name: 'avatar',
+      title: 'Image',
+      type: 'image',
+    },
+    {
+      name: 'type',
+      title: 'Type',
+      type: 'string',
+      type: 'string',
+      options: {
+        list: [
+          {title: 'Featured', value: 'featured'},
+          {title: 'Normal', value: 'normal'},
+        ],
+      },
     },
   ],
 };
