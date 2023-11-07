@@ -13,8 +13,7 @@ export default function Home() {
 
   useEffect(() => {
     const query = `*[_type == "home"]{
-  title,subTitle ,
-"imageUrl": imgUrl.asset->url
+"fileUrl": file.asset->url, subTitle,"imageUrl": imgUrl.asset->url,title, _id
 }
 `;
     client.fetch(query).then(data => {
@@ -49,7 +48,7 @@ export default function Home() {
               <p className="my-4 text-base font-medium">{home[0]?.subTitle}</p>
               <div className="flex items-center self-start mt-2">
                 <Link
-                  href={'/dummy.pdf'}
+                  href={`${home[0]?.fileUrl}`}
                   target="_blank"
                   className="flex items-center bg-dark text-light p-2.5 px-6 rounded-lg text-lg font-semibold hover:bg-light hover:text-dark border border-solid border-transparent hover:border-dark"
                   download={true}>

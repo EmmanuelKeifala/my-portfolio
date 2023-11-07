@@ -45,5 +45,17 @@ export default {
         },
       ],
     },
+    {
+      name: 'type',
+      title: 'Type',
+      type: 'string',
+      type: 'string',
+      options: {
+        list: [
+          {title: 'Featured', value: 'featured'},
+          {title: 'Normal', value: 'normal'},
+        ],
+      },
+    },
   ],
 };

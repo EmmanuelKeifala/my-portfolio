@@ -21,5 +21,13 @@ export default {
       title: 'Subtitle',
       type: 'string',
     },
+    {
+      name: 'file',
+      title: 'CV',
+      type: 'file',
+      options: {
+        accept: '.pdf',
+      },
+    },
   ],
 };

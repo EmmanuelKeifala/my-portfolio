@@ -5,9 +5,10 @@ import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-import project1 from '../../public/images/projects/crypto-screener-cover-image.jpg';
-import project2 from '../../public/images/projects/nft-collection-website-cover-image.jpg';
 import {motion} from 'framer-motion';
+import {useState} from 'react';
+import {useEffect} from 'react';
+import {client} from '@/client';
 const FramerImage = motion(Image);
 
 const FeaturedProjects = ({type, title, summary, img, link, github}) => {
@@ -26,6 +27,8 @@ const FeaturedProjects = ({type, title, summary, img, link, github}) => {
           transition={{duration: 0.2}}
           priority
           sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw"
+          width={500}
+          height={500}
         />
       </Link>
       <div className="w-1/2 flex flex-col items-start justify-between pl-6">
@@ -39,7 +42,7 @@ const FeaturedProjects = ({type, title, summary, img, link, github}) => {
             <GithubIcon />
           </Link>
           <Link
-            href={link}
+            href={`${link}`}
             target="_blank"
             className="ml-4 rounded-lg bg-dark text-light p-2 px-6 text-lg font-semibold">
             Visit Project
@@ -63,6 +66,10 @@ const Project = ({title, type, img, link, github}) => {
           className="w-full h-auto"
           whileHover={{scale: 1.05}}
           transition={{duration: 0.2}}
+          width={500}
+          height={500}
+          priority
+          sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw"
         />
       </Link>
       <div className="w-full flex flex-col items-start justify-between mt-4">
@@ -85,7 +92,18 @@ const Project = ({title, type, img, link, github}) => {
     </article>
   );
 };
-const projects = () => {
+const Projects = () => {
+  const [projects, setProjects] = useState([]);
+
+  useEffect(() => {
+    const query = `*[_type == "works"]{
+  _id,title,type,"imageUrl":imgUrl.asset -> url,projectLink, codeLink, description 
+}
+`;
+    client.fetch(query).then(data => {
+      setProjects(data);
+    });
+  }, []);
   return (
     <>
       <Head>
@@ -101,34 +119,37 @@ const projects = () => {
 
           <div className="grid grid-cols-12 gap-24">
             <div className="col-span-12">
-              <FeaturedProjects
-                title={' Crypto Screener Application'}
-                summary={
-                  'An advanced Crypto Screener App developed with React, Tailwind CSS, Context API, React Router, and Recharts. This feature-rich application provides comprehensive insights into the world of cryptocurrencies, enabling you to effortlessly convert prices into your local currency.'
+              {projects?.map(project => {
+                if (project?.type === 'featured') {
+                  return (
+                    <FeaturedProjects
+                      key={project._id}
+                      title={project.title}
+                      summary={project.description}
+                      link={project.projectLink}
+                      type={project.type}
+                      img={project.imageUrl}
+                      github={project.codeLink}
+                    />
+                  );
                 }
-                link="/"
-                type={'Featured'}
-                img={project1}
-                github={'/'}
-              />
+              })}
             </div>
             <div className="col-span-6">
-              <Project
-                title={' Crypto Screener Application'}
-                link="/"
-                type={'Featured'}
-                img={project1}
-                github={'/'}
-              />
-            </div>
-            <div className="col-span-6">
-              <Project
-                title={' React Portfolio Website'}
-                link="/"
-                type={'Featured'}
-                img={project2}
-                github={'/'}
-              />
+              {projects?.map(project => {
+                if (project?.type === 'normal') {
+                  return (
+                    <Project
+                      key={project._id}
+                      title={project.title}
+                      link={project.projectLink}
+                      type={project.type}
+                      img={project.imageUrl}
+                      github={project.codeLink}
+                    />
+                  );
+                }
+              })}
             </div>
           </div>
         </Layout>
@@ -137,4 +158,4 @@ const projects = () => {
   );
 };
 
-export default projects;
+export default Projects;
