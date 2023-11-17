@@ -1,45 +1,52 @@
-# Next.Js Website Tutorial: Create a Stunning Portfolio Website with Nextjs, Tailwind CSS and Framer-motion🌟
+# Portfolio Website
 
-![GitHub stars](https://img.shields.io/github/stars/codebucks27/Next.js-Developer-Portfolio-Starter-Code?style=social&logo=ApacheSpark&label=Stars)&nbsp;&nbsp;
-![GitHub forks](https://img.shields.io/github/forks/codebucks27/Next.js-Developer-Portfolio-Starter-Code?style=social&logo=KashFlow&maxAge=3600)&nbsp;&nbsp;
-![Github Followers](https://img.shields.io/github/followers/codebucks27.svg?style=social&label=Follow)&nbsp;&nbsp;<br />
+This is the source code for my personal portfolio website. It is built using Next.js, Tailwind CSS, Framer Motion, and Sanity.io.
 
-This repository contains starter code for Portfolio website created using NextJs. <br />
+## Technologies Used
 
-For Demo and Final Code checkout following link👇: <br />
-[Nextjs Portfolio Website](https://devdreaming.com//videos/nextjs-tutorial-build-portfolio-tailwind-css-framer-motion#code-links) <br />
+- [Next.js](https://nextjs.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Framer Motion](https://www.framer.com/motion/)
+- [Sanity.io](https://www.sanity.io/)
 
-If you want to learn how to create it please follow below tutorial👇: <br />
-https://youtu.be/Yw7yWHigGKI <br />
-[![YouTube Video Views](https://img.shields.io/youtube/views/Yw7yWHigGKI?style=social)](https://youtu.be/Yw7yWHigGKI)<br />
+## Getting Started
 
-### Images of The Portfolio Website:
+To get a local copy of the project up and running, follow these steps:
 
-![Nextjs Portfolio Website](https://github.com/codebucks27/Next.js-Developer-Portfolio-Starter-Code/blob/main/website%20images/home-light-desktop.png)
-![Nextjs Portfolio Website Dark Mode](https://github.com/codebucks27/Next.js-Developer-Portfolio-Starter-Code/blob/main/website%20images/home-dark-desktop.png)
-![Next.js Portfolio Website](https://github.com/codebucks27/Next.js-Developer-Portfolio-Starter-Code/blob/main/website%20images/about-light-desktop.png)
-![Next js Portfolio Website](https://github.com/codebucks27/Next.js-Developer-Portfolio-Starter-Code/blob/main/website%20images/projects-dark-desktop.png)
-![Portfolio Website In Next.js](https://github.com/codebucks27/Next.js-Developer-Portfolio-Starter-Code/blob/main/website%20images/articles-light-desktop.png)
-![Responsive Portfolio Website In Nextjs](https://github.com/codebucks27/Next.js-Developer-Portfolio-Starter-Code/blob/main/website%20images/about-light-mobile.png)
-![Responsive Portfolio Website In Next js](https://github.com/codebucks27/Next.js-Developer-Portfolio-Starter-Code/blob/main/website%20images/projects-light-mobile.png)
-![Mobile Responsive Portfolio Website In Next.js](https://github.com/codebucks27/Next.js-Developer-Portfolio-Starter-Code/blob/main/website%20images/articles-light-mobile.png)
+1. **Clone the repository:**
 
+   `git clone https://github.com/your-username/your-portfolio.git`
 
-### Resources Used in This Project
+2. **Navigate to the project directory:**
+   `cd your-portfolio`
 
-- Profile image in the home page created by using https://www.midjourney.com/ tool.
-- Profile image in the about page by [Albert Dera](https://unsplash.com/@albertdera?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) 
-on [Unsplash](https://unsplash.com/photos/ILip77SbmOE?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText).
-- Fonts from https://fonts.google.com/ <br />
-- Icons from https://iconify.design/ <br />
-- LightBulb Svg from https://lukaszadam.com/illustrations <br />
+3. **Install dependencies:**
+   `npm install`
 
-### External Libraries used in this project:
+4. **Set up Sanity.io:**
 
-- [framer-motion](https://www.framer.com/motion/) <br />
-- [Tailwind css](https://tailwindcss.com/) <br />
+   - Create a project on Sanity.io.
+   - Configure your Sanity.io settings.
+   - Populate your Sanity.io project with your portfolio data.
 
+5. **Start the development server:**
+   `npm run dev`
 
-# my-portfolio
-# my-portfolio
-# my-portfolio
+6. **Open your browser and visit http://localhost:3000:**
+   You should see your portfolio website running locally.
+
+## Configuration
+
+- Update the content in the Sanity.io project with your personal information and portfolio items.
+- Customize the styling using Tailwind CSS by modifying the styles in the styles directory.
+
+## Deployment
+
+To deploy your portfolio, follow the deployment instructions for Next.js. You can use platforms like Vercel or Netlify for seamless deployment.
+
+## Acknowledgments
+
+This project was built using the awesome technologies mentioned above.
+Feel free to reach out if you have any questions or need further assistance!
+
+## This README file provides clear steps for cloning the project, setting it up locally, and making necessary configurations. Adjust the content as needed for your specific project and provide any additional details that might be helpful for someone replicating your portfolio website.
